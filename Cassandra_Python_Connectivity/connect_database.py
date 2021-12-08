@@ -52,15 +52,15 @@ class ConnectDB:
         df = rows._current_rows
         logger.info( "Accessing rows from cassandra db is done...")
         casandra_to_local_path = config["data_sources"]["cassandra_to_local_path"]
-        print(df.shape)
+        
         df.to_csv(casandra_to_local_path,index=False)
         logger.info( "Data has been successfully saved to given folder.")
         #self.log.disabled = True
         return df
 
 
-if __name__ == '__main__':
-    args = argparse.ArgumentParser()
-    args.add_argument("--config",default="params.yaml")
-    parsed_args = args.parse_args()
-    ConnectDB().casandra_to_local_get_data(config_path=parsed_args.config)
+# if __name__ == '__main__':
+#     args = argparse.ArgumentParser()
+#     args.add_argument("--config",default="params.yaml")
+#     parsed_args = args.parse_args()
+#     ConnectDB().casandra_to_local_get_data(config_path=parsed_args.config)

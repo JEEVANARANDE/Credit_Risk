@@ -7,12 +7,28 @@ stages:
       md5: a03b1d2584a02c1125682d562c1b12c5
       size: 51948
     - path: src/get_data.py
-      md5: ba3abbe23076695d557c7e1af4efb7da
-      size: 1476
+      md5: 631330608bd791abefd93c780fe9af9c
+      size: 1445
     - path: src/load_data.py
-      md5: 9a22f728e3c86999dadf4b7365900523
-      size: 1479
+      md5: f07d410793e3d600496c560ba98f1fd2
+      size: 1464
     outs:
     - path: data/raw/SouthGermanCredit_data.csv
       md5: a03b1d2584a02c1125682d562c1b12c5
       size: 51948
+  split_data:
+    cmd: python src/split_data.py --config=params.yaml
+    deps:
+    - path: data/raw/SouthGermanCredit_data.csv
+      md5: a03b1d2584a02c1125682d562c1b12c5
+      size: 51948
+    - path: src/split_data.py
+      md5: 323de3a74f394d513b968e7a86c8d140
+      size: 1093
+    outs:
+    - path: data/processed/test_Dataset.csv
+      md5: 554981ab7f32926adbcb2099564be1e4
+      size: 10600
+    - path: data/processed/train_Dataset.csv
+      md5: 61eff0448b34112e2f3b271afe68dba5
+      size: 41610

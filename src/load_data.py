@@ -23,7 +23,6 @@ def load_and_save(config_path):
     #logg = get_logger(__file__)
     config = read_params(config_path)
     df = get_data(config_path)
-    print(df)
     raw_data_path = config["load_data"]["raw_dataset_csv"]
     df.to_csv(raw_data_path,sep=",",index=False)
     logger.info("Load data from remote sources and then saving it in data/raw folder")
