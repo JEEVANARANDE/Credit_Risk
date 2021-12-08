@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - path: data_given/SouthGermanCredit_cassandra.csv
+      md5: a03b1d2584a02c1125682d562c1b12c5
+      size: 51948
+    - path: src/get_data.py
+      md5: ba3abbe23076695d557c7e1af4efb7da
+      size: 1476
+    - path: src/load_data.py
+      md5: 9a22f728e3c86999dadf4b7365900523
+      size: 1479
+    outs:
+    - path: data/raw/SouthGermanCredit_data.csv
+      md5: a03b1d2584a02c1125682d562c1b12c5
+      size: 51948

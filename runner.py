@@ -6,7 +6,6 @@ import argparse
 from connect_database import ConnectDB
 from get_data import *
 from load_data import *
-#from logger import get_logger
 import argparse
 
 if __name__ == '__main__':

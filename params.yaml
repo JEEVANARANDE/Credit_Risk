@@ -11,7 +11,7 @@ cassandra_connectivity:
   ASTRA_CLIENT_SECRET: 'iwnM6w2lJkBhY5+-214UeaZDHvpZaMuMmu2wXmQgQ1yZJiZODAJqJ4qAzR+l7fnJCiWl_iMIlsTW-AZBmS9ChmM_QnW+rKv7oSXNci,F9NMGTi+dbJeXj.Gkj6xnJzuY'
 
 data_sources:
-  cassandra_DB_Name : 'Credit_Data'
+  cassandra_DB_Name : 'Credit_Data1'
   cassandra_Table_Name : '"SouthGermanCredit"'
   query : "SELECT * FROM {0};"
   cassandra_to_local_path: data_given/SouthGermanCredit_cassandra.csv

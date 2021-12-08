@@ -7,28 +7,30 @@ import yaml
 import pandas as pd
 import argparse
 #import connect_database
-from logger import get_logger
+#from logger import get_logger
 from custom_functions import *
 import logging
+
+
 log_dir='logs'
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 f = logging.Formatter("[%(asctime)s: - %(levelname)s: %(lineno)d:] - %(filename)s - %(message)s",datefmt='%d-%m-%Y %I:%M:%S %p')#- %(pathname)s: ,f = logging.Formatter("[%(asctime)s: - %(name)s: - %(levelname)s: - %(pathname)s - %(module)s:] - %(filename)s - %(message)s")#
-#filename = '{}.log'.format(os.path.basename('filename').split('.py')[0])
-
+filename = '{}.log'.format(os.path.basename(__file__).split('.py')[0])
 os.makedirs(log_dir,exist_ok=True) 
-fh = logging.FileHandler(filename=os.path.join(log_dir,"get_data.log"),mode="w")
+fh = logging.FileHandler(filename=os.path.join(log_dir,filename),mode="a")#"get_data.log"
+fh.setFormatter(f)
 fh.setFormatter(f)
 logger.addHandler(fh)
 
 def get_data(config_path):
-    #log = get_logger(__name__)
+    
     config = read_params(config_path)
     logger.info("Started getting data from given folder...")
     data_path = config["data_sources"]["cassandra_to_local_path"]
     df = pd.read_csv(data_path,sep=",",encoding='utf-8',low_memory=False)
+    print(df.shape)
     logger.info("Data has been successfully readed from the given folder.")
-    #log.disabled = True
     return df
     
 
