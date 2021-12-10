@@ -25,3 +25,6 @@ split_data:
   train_path: data/processed/train_Dataset.csv
   test_path: data/processed/test_Dataset.csv
   test_size: 0.2
+
+one_hot_encoding:
+  ohencs: saved_models/ohenc.pkl

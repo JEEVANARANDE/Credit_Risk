@@ -2,7 +2,7 @@ import pandas as pd
 import yaml
 from scipy.stats import f_oneway
 from scipy.stats import chi2_contingency
-
+import logging
 def pandas_factory(colnames, rows):
         return pd.DataFrame(rows, columns=colnames)
 

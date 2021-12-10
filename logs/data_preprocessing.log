@@ -1,0 +1,96 @@
+[11-12-2021 04:47:02 AM: - 75  - Started reading data for Preprocessing. ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 79  - Checking rows and columns in data (1000, 22) ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 81  - Checking column data type 
+id                         int64
+credit_risk                int64
+age                        int64
+amount                     int64
+credit_history             int64
+duration                   int64
+employment_duration        int64
+foreign_worker             int64
+housing                    int64
+installment_rate           int64
+job                        int64
+number_credits             int64
+other_debtors              int64
+other_installment_plans    int64
+people_liable              int64
+personal_status_sex        int64
+present_residence          int64
+property                   int64
+purpose                    int64
+savings                    int64
+status                     int64
+telephone                  int64
+dtype: object ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 84  - Checking id                            int64
+credit_risk                category
+age                           int64
+amount                        int64
+credit_history             category
+duration                      int64
+employment_duration        category
+foreign_worker             category
+housing                    category
+installment_rate           category
+job                        category
+number_credits             category
+other_debtors              category
+other_installment_plans    category
+people_liable              category
+personal_status_sex        category
+present_residence          category
+property                   category
+purpose                    category
+savings                    category
+status                     category
+telephone                  category
+dtype: object ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 86  - Our dependent variable i.e credit_risk ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 87  - checking which categorical variables are correlated with target variable. ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 59  - If the ChiSq P-Value is <0.05, that means we reject H0 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - credit_history, 'is correlated with', credit_risk, '| P-Value:', 1.2791872956750918e-12 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - employment_duration, 'is correlated with', credit_risk, '| P-Value:', 0.0010454523491402541 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - foreign_worker, 'is correlated with', credit_risk, '| P-Value:', 0.015830754902852885 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - housing, 'is correlated with', credit_risk, '| P-Value:', 8.810311250241031e-05 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 69  - installment_rate, 'is NOT correlated with', credit_risk, '| P-Value:', 0.1400333122128481 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 69  - job, 'is NOT correlated with', credit_risk, '| P-Value:', 0.5965815918843431 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 69  - number_credits, 'is NOT correlated with', credit_risk, '| P-Value:', 0.4451440800083001 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - other_debtors, 'is correlated with', credit_risk, '| P-Value:', 0.036055954027247206 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - other_installment_plans, 'is correlated with', credit_risk, '| P-Value:', 0.0016293178186473534 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 69  - people_liable, 'is NOT correlated with', credit_risk, '| P-Value:', 1.0 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - personal_status_sex, 'is correlated with', credit_risk, '| P-Value:', 0.02223800546926877 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 69  - present_residence, 'is NOT correlated with', credit_risk, '| P-Value:', 0.8615521320413175 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - property, 'is correlated with', credit_risk, '| P-Value:', 2.8584415733250017e-05 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - purpose, 'is correlated with', credit_risk, '| P-Value:', 0.00011574910079691586 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - savings, 'is correlated with', credit_risk, '| P-Value:', 2.761214238568249e-07 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 66  - status, 'is correlated with', credit_risk, '| P-Value:', 1.2189020722893755e-26 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 69  - telephone, 'is NOT correlated with', credit_risk, '| P-Value:', 0.2788761543035742 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 94  - Now checking which continous variables are correlated with target variable. ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 36  - If the ANOVA P-Value is <0.05, that means we reject H0 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 40  - ##### ANOVA Results are shown below :- ##### 
+ ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 47  - id, 'is correlated with', credit_risk, '| P-Value:', 7.781469900746383e-152 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 47  - age, 'is correlated with', credit_risk, '| P-Value:', 0.003868455281308189 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 47  - amount, 'is correlated with', credit_risk, '| P-Value:', 8.795399017206301e-07 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 47  - duration, 'is correlated with', credit_risk, '| P-Value:', 6.488049877187189e-12 ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 100  - Selecting final columns for model ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 104  - This are the final columns used for model before one-hot-encoding:= Index(['credit_history', 'employment_duration', 'foreign_worker', 'housing',
+       'other_debtors', 'other_installment_plans', 'personal_status_sex',
+       'property', 'purpose', 'savings', 'status', 'id', 'age', 'amount',
+       'duration'],
+      dtype='object') ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 105  - Treating all nominal variables at once using One-hot-Encoding.. ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 112  - Exporting Final Trained Model in pickle file. ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 121  - Adding Target Variable to the data. ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 125  -   employment_duration property   id  age  amount  duration  OHE1  ...  OHE34  OHE35  OHE36  OHE37  OHE38  OHE39  credit_risk
+0                   4        4  769   29    1437         9     0  ...      1      0      1      0      0      1            0
+1                   2        4   23   33    2384        36     0  ...      1      1      0      0      0      1            0
+2                   3        1  114   26     763        12     0  ...      1      0      1      0      0      1            1
+3                   2        1  660   26     590         6     0  ...      1      0      1      0      1      0            1
+4                   3        1  893   25    1484        12     0  ...      1      0      1      0      0      1            0
+
+[5 rows x 46 columns] ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 126  - Target Variable has been added succesfully.. ] - data_preprocessing.py
+[11-12-2021 04:47:02 AM: - 134  - Data Preprocessing has been completed successfully... ] - data_preprocessing.py
