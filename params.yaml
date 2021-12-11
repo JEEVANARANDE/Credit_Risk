@@ -20,11 +20,15 @@ data_sources:
 load_data:
   raw_dataset_csv: data/raw/SouthGermanCredit_data.csv
 
+Feature_extraction:
+  x_indept_scaled_var: data/processed/x_indept_scaled_var.csv
+  y_dept_var: data/processed/y_dept_var.csv
 
 split_data:
   train_path: data/processed/train_Dataset.csv
   test_path: data/processed/test_Dataset.csv
-  test_size: 0.2
+  test_size: 0.3
 
 one_hot_encoding:
   ohencs: saved_models/ohenc.pkl
+  minmaxscaler: saved_models/MinMaxScaler.pkl

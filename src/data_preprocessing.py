@@ -17,7 +17,7 @@ import argparse
 from load_data import *
 from scipy.stats import chi2_contingency
 from scipy.stats import f_oneway
-
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
 log_dir='logs'
 logger = logging.getLogger(__name__)
@@ -70,7 +70,7 @@ def FunctionChisq(inpData, TargetVariable, CategoricalVariablesList):
             
     return(SelectedPredictors)
 
-def Data_Preprocessing(config_path):
+def Feature_extraction(config_path):
     config = read_params(config_path)
     logger.info("Started reading data for Preprocessing.")
     data_path = config["load_data"]["raw_dataset_csv"]
@@ -99,43 +99,63 @@ def Data_Preprocessing(config_path):
     #logger.info(f"{select_cont_column}")
     logger.info("Selecting final columns for model")
     joinedlist = selectedPrdictor + select_cont_column
-    Data_for_model=df[joinedlist]
-    Data_for_model=Data_for_model.loc[:, Data_for_model.columns!='credit_risk']
-    logger.info(f"This are the final columns used for model before one-hot-encoding:= {Data_for_model.columns}")
+    print(selectedPrdictor)
+    print(select_cont_column)
+    X=df[joinedlist]
+    y=df[target_variable]#.values
+    
+    # logger.info(f"This are the final columns used for model before one-hot-encoding:= {Data_for_model.columns}")
     logger.info("Treating all nominal variables at once using One-hot-Encoding..")
+    
     nominaldata1=['status','credit_history','purpose','savings','personal_status_sex','other_debtors','other_installment_plans','housing','foreign_worker']
-    #print(len(nominaldata1))
-    ohenc = OneHotEncoder(sparse=False, dtype=int).fit(Data_for_model[nominaldata1])
+    ohenc = OneHotEncoder(sparse=False, dtype=int).fit(X[nominaldata1])
+
+    encoded_data = ohenc.transform(X[nominaldata1])
+    encoded_df = pd.DataFrame(encoded_data, columns = [ f'OHE{i}' for i in range(1, encoded_data.shape[1] + 1)])
+    X = X.reset_index(drop=True).drop(nominaldata1, axis=1).merge(encoded_df, how='left', left_index=True,right_index=True)
     ohenc_file = config["one_hot_encoding"]["ohencs"]
     with open(ohenc_file, 'wb') as pkl_file:
         pickle.dump(ohenc, pkl_file) 
     logger.info("Exporting Final Trained Model in pickle file.")
-
-    encoded_data = ohenc.transform(Data_for_model[nominaldata1])
-    encoded_df = pd.DataFrame(encoded_data, columns = [ f'OHE{i}' for i in range(1, encoded_data.shape[1] + 1)])
-    Data_for_model_Numeric = Data_for_model.reset_index(drop=True).drop(nominaldata1, axis=1).merge(encoded_df, 
-                                                                                            how='left', 
-                                                                                            left_index=True, 
-                                                                                            right_index=True)
-
+    # Data_for_model_Numeric=preprocess(Data_for_model,config_path)
     logger.info("Adding Target Variable to the data.")
-
-    Data_for_model_Numeric['credit_risk']=df['credit_risk']
-    Data_for_model_Numeric[['duration', 'amount', 'age','property','employment_duration']]=Data_for_model[['duration', 'amount', 'age','property','employment_duration']]
-    logger.info(f"{Data_for_model_Numeric.head()}")
-    logger.info("Target Variable has been added succesfully..")
-        # Printing all the column names 
-    Data_for_model_Numeric1=Data_for_model_Numeric.loc[:, Data_for_model_Numeric.columns!='credit_risk']
-    Data_for_model_Numeric1.columns 
-    TargetVariable=target_variable
-    Predictors=Data_for_model_Numeric1.columns
-    X=Data_for_model_Numeric[Predictors].values
-    y=Data_for_model_Numeric[TargetVariable].values
+    x_indept_scaled_var=config["Feature_extraction"]["x_indept_scaled_var"]
+    y_dept_var=config["Feature_extraction"]["y_dept_var"]
+    
+    y.to_csv(y_dept_var,sep=",",index=False)
+    ### Sandardization of data ###
+    PredictorScaler = MinMaxScaler().fit(X)
+    X_scaled = PredictorScaler.transform(X)
+    X_scaled = pd.DataFrame(X_scaled, columns=X.columns)
+    X_scaled.to_csv(x_indept_scaled_var,sep=",",index=False)
+    minmaxscaler = config["one_hot_encoding"]["minmaxscaler"]
+    with open(minmaxscaler, 'wb') as pkl_file:
+        pickle.dump(PredictorScaler, pkl_file)
     logger.info("Data Preprocessing has been completed successfully...")
+    return X_scaled, y
+
+def preprocess(_data,config_path):
+    config = read_params(config_path)
+    ohenc_file = config["one_hot_encoding"]["ohencs"]
+    with open(ohenc_file, 'rb') as pkl_file:
+        ohenc = pickle.load(pkl_file)
+    nominaldata1=['status','credit_history','purpose','savings','personal_status_sex','other_debtors','other_installment_plans','housing','foreign_worker']
+    encoded_data = ohenc.transform(_data[nominaldata1])
+    encoded_df = pd.DataFrame(encoded_data, columns = [ f'OHE{i}' for i in range(1, encoded_data.shape[1] + 1)])
+    
+    Data_for_model_Numeric = _data.reset_index(drop=True).drop(nominaldata1, axis=1).merge(encoded_df, how='left', left_index=True,right_index=True)
+    
+    minmaxscaler = config["one_hot_encoding"]["minmaxscaler"]
+    with open(minmaxscaler, 'rb') as pkl_file:
+        minmaxscaler = pickle.load(pkl_file)
+    Data_for_model_Numeric=minmaxscaler.transform(Data_for_model_Numeric)
+    return Data_for_model_Numeric
+
 
 if __name__ == '__main__':
     args = argparse.ArgumentParser()
     args.add_argument('--config',default='params.yaml')
     parsed_args = args.parse_args()
     #ConnectDB().casandra_to_local_get_data(config_path=parsed_args.config)
-    Data_Preprocessing(config_path=parsed_args.config)
+    x,y=Feature_extraction(config_path=parsed_args.config)
+    # x_preprocess=preprocess(x,config_path=parsed_args.config)
