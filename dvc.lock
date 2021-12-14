@@ -16,6 +16,22 @@ stages:
     - path: data/raw/SouthGermanCredit_data.csv
       md5: a03b1d2584a02c1125682d562c1b12c5
       size: 51948
+  data_preprocessing:
+    cmd: python src/data_preprocessing.py --config=params.yaml
+    deps:
+    - path: data/raw/SouthGermanCredit_data.csv
+      md5: a03b1d2584a02c1125682d562c1b12c5
+      size: 51948
+    - path: src/data_preprocessing.py
+      md5: a1d3656f0a633a3e4bf9b237b61c660b
+      size: 7658
+    outs:
+    - path: data/processed/x_indept_scaled_var.csv
+      md5: 5c942ac640b428fdfb6dce682424dcca
+      size: 250956
+    - path: data/processed/y_dept_var.csv
+      md5: e0b1ad4c4586cb1a6b7e2d355633d477
+      size: 3013
   split_data:
     cmd: python src/split_data.py --config=params.yaml
     deps:
@@ -23,12 +39,37 @@ stages:
       md5: a03b1d2584a02c1125682d562c1b12c5
       size: 51948
     - path: src/split_data.py
-      md5: 323de3a74f394d513b968e7a86c8d140
-      size: 1093
+      md5: caee99cb2d0704266169650891af147a
+      size: 1963
     outs:
     - path: data/processed/test_Dataset.csv
-      md5: 554981ab7f32926adbcb2099564be1e4
-      size: 10600
+      md5: b2d197cd38f1e6b0654cc0b97d44a164
+      size: 76168
     - path: data/processed/train_Dataset.csv
-      md5: 61eff0448b34112e2f3b271afe68dba5
-      size: 41610
+      md5: 237b6d6fe79638dd4c1368eac1eb6f2d
+      size: 177090
+  train_and_evaluate:
+    cmd: python src/train_and_evaluate.py --config=params.yaml
+    deps:
+    - path: data/processed/test_Dataset.csv
+      md5: b2d197cd38f1e6b0654cc0b97d44a164
+      size: 76168
+    - path: data/processed/train_Dataset.csv
+      md5: 237b6d6fe79638dd4c1368eac1eb6f2d
+      size: 177090
+    - path: src/train_and_evaluate.py
+      md5: 30c3e1e5c6944c8e4d7df3fa1609e1bc
+      size: 6233
+    params:
+      params.yaml:
+        estimators.GridSearch_rf.params.cv: 3
+        estimators.GridSearch_rf.params.n_jobs: 4
+        estimators.GridSearch_rf.params.refit: true
+        estimators.GridSearch_rf.params.verbose: 2
+    outs:
+    - path: report/params.json
+      md5: 6a6dc59e82bc142eae395bb1010075bf
+      size: 159
+    - path: saved_models/rf_Grid.joblib
+      md5: ebd6de6448afde8833e545fb0c4af776
+      size: 125293
