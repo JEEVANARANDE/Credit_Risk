@@ -556,3 +556,255 @@ weighted avg       0.95      0.95      0.94       700
    macro avg       0.94      0.95      0.94       300
 weighted avg       0.95      0.95      0.95       300
 
+[22-12-2021 01:41:04 AM: - INFO: 45:] - train_and_evaluate.py - Reading of train and test data is completed
+[22-12-2021 01:41:05 AM: - INFO: 51:] - train_and_evaluate.py - Number of trees in random 
+[22-12-2021 01:41:05 AM: - INFO: 53:] - train_and_evaluate.py - [10, 20, 30, 40, 50]
+[22-12-2021 01:41:05 AM: - INFO: 55:] - train_and_evaluate.py - Number of features to consider at every split ['auto', 'sqrt']
+[22-12-2021 01:41:05 AM: - INFO: 57:] - train_and_evaluate.py - Maximum number of levels in tree : [2, 4]
+[22-12-2021 01:41:05 AM: - INFO: 59:] - train_and_evaluate.py - Minimum number of samples required to split a node [2, 5]
+[22-12-2021 01:41:05 AM: - INFO: 61:] - train_and_evaluate.py - Minimum number of samples required at each leaf node [1, 2]
+[22-12-2021 01:41:05 AM: - INFO: 63:] - train_and_evaluate.py - Method of selecting samples for training each tree [True, False]
+[22-12-2021 01:41:05 AM: - INFO: 64:] - train_and_evaluate.py - Create the param grid
+[22-12-2021 01:41:05 AM: - INFO: 71:] - train_and_evaluate.py - {'n_estimators': [10, 20, 30, 40, 50], 'max_features': ['auto', 'sqrt'], 'max_depth': [2, 4], 'min_samples_split': [2, 5], 'min_samples_leaf': [1, 2], 'bootstrap': [True, False]}
+[22-12-2021 01:41:05 AM: - INFO: 73:] - train_and_evaluate.py - Applying random forest..
+[22-12-2021 01:41:39 AM: - INFO: 81:] - train_and_evaluate.py - Model fitting is completed..
+[22-12-2021 01:41:39 AM: - INFO: 82:] - train_and_evaluate.py - 
+ These are best parameters: 
+{'bootstrap': True, 'max_depth': 4, 'max_features': 'auto', 'min_samples_leaf': 2, 'min_samples_split': 5, 'n_estimators': 40}
+[22-12-2021 01:41:39 AM: - INFO: 90:] - train_and_evaluate.py - Model is dumped successfully..
+[22-12-2021 01:41:39 AM: - INFO: 95:] - train_and_evaluate.py - 
+ Train Accuracy - : 0.926
+[22-12-2021 01:41:39 AM: - INFO: 96:] - train_and_evaluate.py - 
+[[158  52]
+ [  0 490]]
+[22-12-2021 01:41:39 AM: - INFO: 97:] - train_and_evaluate.py - 
+ Test Accuracy - : 0.947
+[22-12-2021 01:41:39 AM: - INFO: 98:] - train_and_evaluate.py - 
+[[ 74  16]
+ [  0 210]]
+[22-12-2021 01:41:39 AM: - INFO: 116:] - train_and_evaluate.py - 
+ Best Threshold values for our model :- 
+   threshold  f1_score
+0   0.737077  0.963303
+1   0.936775  0.963303
+2   0.596939  0.963303
+3   0.685492  0.963303
+4   0.687779  0.963303
+[22-12-2021 01:41:39 AM: - INFO: 121:] - train_and_evaluate.py - 
+ Train Accuracy - : 0.926
+[22-12-2021 01:41:39 AM: - INFO: 122:] - train_and_evaluate.py - 
+[[192  18]
+ [ 45 445]]
+[22-12-2021 01:41:39 AM: - INFO: 123:] - train_and_evaluate.py - 
+              precision    recall  f1-score   support
+
+           0       0.81      0.91      0.86       210
+           1       0.96      0.91      0.93       490
+
+    accuracy                           0.91       700
+   macro avg       0.89      0.91      0.90       700
+weighted avg       0.92      0.91      0.91       700
+
+[22-12-2021 01:41:39 AM: - INFO: 124:] - train_and_evaluate.py - Test Accuracy - : 0.947
+[22-12-2021 01:41:39 AM: - INFO: 125:] - train_and_evaluate.py - 
+[[ 86   4]
+ [ 33 177]]
+[22-12-2021 01:41:39 AM: - INFO: 126:] - train_and_evaluate.py - 
+              precision    recall  f1-score   support
+
+           0       0.72      0.96      0.82        90
+           1       0.98      0.84      0.91       210
+
+    accuracy                           0.88       300
+   macro avg       0.85      0.90      0.86       300
+weighted avg       0.90      0.88      0.88       300
+
+[22-12-2021 02:51:17 AM: - INFO: 45:] - train_and_evaluate.py - Reading of train and test data is completed
+[22-12-2021 02:51:17 AM: - INFO: 51:] - train_and_evaluate.py - Number of trees in random 
+[22-12-2021 02:51:17 AM: - INFO: 53:] - train_and_evaluate.py - [10, 20, 30, 40, 50]
+[22-12-2021 02:51:17 AM: - INFO: 55:] - train_and_evaluate.py - Number of features to consider at every split ['auto', 'sqrt']
+[22-12-2021 02:51:17 AM: - INFO: 57:] - train_and_evaluate.py - Maximum number of levels in tree : [2, 4]
+[22-12-2021 02:51:17 AM: - INFO: 59:] - train_and_evaluate.py - Minimum number of samples required to split a node [2, 5]
+[22-12-2021 02:51:17 AM: - INFO: 61:] - train_and_evaluate.py - Minimum number of samples required at each leaf node [1, 2]
+[22-12-2021 02:51:17 AM: - INFO: 63:] - train_and_evaluate.py - Method of selecting samples for training each tree [True, False]
+[22-12-2021 02:51:17 AM: - INFO: 64:] - train_and_evaluate.py - Create the param grid
+[22-12-2021 02:51:17 AM: - INFO: 71:] - train_and_evaluate.py - {'n_estimators': [10, 20, 30, 40, 50], 'max_features': ['auto', 'sqrt'], 'max_depth': [2, 4], 'min_samples_split': [2, 5], 'min_samples_leaf': [1, 2], 'bootstrap': [True, False]}
+[22-12-2021 02:51:17 AM: - INFO: 73:] - train_and_evaluate.py - Applying random forest..
+[22-12-2021 02:51:50 AM: - INFO: 81:] - train_and_evaluate.py - Model fitting is completed..
+[22-12-2021 02:51:50 AM: - INFO: 82:] - train_and_evaluate.py - 
+ These are best parameters: 
+{'bootstrap': False, 'max_depth': 2, 'max_features': 'auto', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 10}
+[22-12-2021 02:51:50 AM: - INFO: 90:] - train_and_evaluate.py - Model is dumped successfully..
+[22-12-2021 02:51:50 AM: - INFO: 95:] - train_and_evaluate.py - 
+ Train Accuracy - : 0.896
+[22-12-2021 02:51:50 AM: - INFO: 96:] - train_and_evaluate.py - 
+[[137  73]
+ [  0 490]]
+[22-12-2021 02:51:50 AM: - INFO: 97:] - train_and_evaluate.py - 
+ Test Accuracy - : 0.937
+[22-12-2021 02:51:50 AM: - INFO: 98:] - train_and_evaluate.py - 
+[[ 71  19]
+ [  0 210]]
+[22-12-2021 02:51:50 AM: - INFO: 116:] - train_and_evaluate.py - 
+ Best Threshold values for our model :- 
+   threshold  f1_score
+0   0.734612   0.95672
+1   0.734340   0.95672
+2   0.632972   0.95672
+3   0.645446   0.95672
+4   0.648456   0.95672
+[22-12-2021 02:51:50 AM: - INFO: 121:] - train_and_evaluate.py - 
+ Train Accuracy - : 0.896
+[22-12-2021 02:51:50 AM: - INFO: 122:] - train_and_evaluate.py - 
+[[185  25]
+ [ 70 420]]
+[22-12-2021 02:51:50 AM: - INFO: 123:] - train_and_evaluate.py - 
+              precision    recall  f1-score   support
+
+           0       0.73      0.88      0.80       210
+           1       0.94      0.86      0.90       490
+
+    accuracy                           0.86       700
+   macro avg       0.83      0.87      0.85       700
+weighted avg       0.88      0.86      0.87       700
+
+[22-12-2021 02:51:50 AM: - INFO: 124:] - train_and_evaluate.py - Test Accuracy - : 0.937
+[22-12-2021 02:51:50 AM: - INFO: 125:] - train_and_evaluate.py - 
+[[ 87   3]
+ [ 45 165]]
+[22-12-2021 02:51:50 AM: - INFO: 126:] - train_and_evaluate.py - 
+              precision    recall  f1-score   support
+
+           0       0.66      0.97      0.78        90
+           1       0.98      0.79      0.87       210
+
+    accuracy                           0.84       300
+   macro avg       0.82      0.88      0.83       300
+weighted avg       0.89      0.84      0.85       300
+
+[22-12-2021 02:53:04 AM: - INFO: 45:] - train_and_evaluate.py - Reading of train and test data is completed
+[22-12-2021 02:53:04 AM: - INFO: 51:] - train_and_evaluate.py - Number of trees in random 
+[22-12-2021 02:53:04 AM: - INFO: 53:] - train_and_evaluate.py - [10, 20, 30, 40, 50]
+[22-12-2021 02:53:04 AM: - INFO: 55:] - train_and_evaluate.py - Number of features to consider at every split ['auto', 'sqrt']
+[22-12-2021 02:53:04 AM: - INFO: 57:] - train_and_evaluate.py - Maximum number of levels in tree : [2, 4]
+[22-12-2021 02:53:04 AM: - INFO: 59:] - train_and_evaluate.py - Minimum number of samples required to split a node [2, 5]
+[22-12-2021 02:53:04 AM: - INFO: 61:] - train_and_evaluate.py - Minimum number of samples required at each leaf node [1, 2]
+[22-12-2021 02:53:04 AM: - INFO: 63:] - train_and_evaluate.py - Method of selecting samples for training each tree [True, False]
+[22-12-2021 02:53:04 AM: - INFO: 64:] - train_and_evaluate.py - Create the param grid
+[22-12-2021 02:53:04 AM: - INFO: 71:] - train_and_evaluate.py - {'n_estimators': [10, 20, 30, 40, 50], 'max_features': ['auto', 'sqrt'], 'max_depth': [2, 4], 'min_samples_split': [2, 5], 'min_samples_leaf': [1, 2], 'bootstrap': [True, False]}
+[22-12-2021 02:53:04 AM: - INFO: 73:] - train_and_evaluate.py - Applying random forest..
+[22-12-2021 02:53:32 AM: - INFO: 81:] - train_and_evaluate.py - Model fitting is completed..
+[22-12-2021 02:53:32 AM: - INFO: 82:] - train_and_evaluate.py - 
+ These are best parameters: 
+{'bootstrap': True, 'max_depth': 4, 'max_features': 'auto', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 20}
+[22-12-2021 02:53:32 AM: - INFO: 90:] - train_and_evaluate.py - Model is dumped successfully..
+[22-12-2021 02:53:32 AM: - INFO: 95:] - train_and_evaluate.py - 
+ Train Accuracy - : 0.940
+[22-12-2021 02:53:32 AM: - INFO: 96:] - train_and_evaluate.py - 
+[[168  42]
+ [  0 490]]
+[22-12-2021 02:53:32 AM: - INFO: 97:] - train_and_evaluate.py - 
+ Test Accuracy - : 0.970
+[22-12-2021 02:53:32 AM: - INFO: 98:] - train_and_evaluate.py - 
+[[ 81   9]
+ [  0 210]]
+[22-12-2021 02:53:32 AM: - INFO: 116:] - train_and_evaluate.py - 
+ Best Threshold values for our model :- 
+   threshold  f1_score
+0   0.721311  0.979021
+1   0.955958  0.979021
+2   0.262856  0.979021
+3   0.263393  0.979021
+4   0.274928  0.979021
+[22-12-2021 02:53:32 AM: - INFO: 121:] - train_and_evaluate.py - 
+ Train Accuracy - : 0.940
+[22-12-2021 02:53:32 AM: - INFO: 122:] - train_and_evaluate.py - 
+[[185  25]
+ [ 15 475]]
+[22-12-2021 02:53:32 AM: - INFO: 123:] - train_and_evaluate.py - 
+              precision    recall  f1-score   support
+
+           0       0.93      0.88      0.90       210
+           1       0.95      0.97      0.96       490
+
+    accuracy                           0.94       700
+   macro avg       0.94      0.93      0.93       700
+weighted avg       0.94      0.94      0.94       700
+
+[22-12-2021 02:53:32 AM: - INFO: 124:] - train_and_evaluate.py - Test Accuracy - : 0.970
+[22-12-2021 02:53:32 AM: - INFO: 125:] - train_and_evaluate.py - 
+[[ 86   4]
+ [ 16 194]]
+[22-12-2021 02:53:33 AM: - INFO: 126:] - train_and_evaluate.py - 
+              precision    recall  f1-score   support
+
+           0       0.84      0.96      0.90        90
+           1       0.98      0.92      0.95       210
+
+    accuracy                           0.93       300
+   macro avg       0.91      0.94      0.92       300
+weighted avg       0.94      0.93      0.93       300
+
+[22-12-2021 03:10:22 AM: - INFO: 45:] - train_and_evaluate.py - Reading of train and test data is completed
+[22-12-2021 03:10:22 AM: - INFO: 51:] - train_and_evaluate.py - Number of trees in random 
+[22-12-2021 03:10:22 AM: - INFO: 53:] - train_and_evaluate.py - [10, 20, 30, 40, 50]
+[22-12-2021 03:10:22 AM: - INFO: 55:] - train_and_evaluate.py - Number of features to consider at every split ['auto', 'sqrt']
+[22-12-2021 03:10:22 AM: - INFO: 57:] - train_and_evaluate.py - Maximum number of levels in tree : [2, 4]
+[22-12-2021 03:10:22 AM: - INFO: 59:] - train_and_evaluate.py - Minimum number of samples required to split a node [2, 5]
+[22-12-2021 03:10:22 AM: - INFO: 61:] - train_and_evaluate.py - Minimum number of samples required at each leaf node [1, 2]
+[22-12-2021 03:10:22 AM: - INFO: 63:] - train_and_evaluate.py - Method of selecting samples for training each tree [True, False]
+[22-12-2021 03:10:22 AM: - INFO: 64:] - train_and_evaluate.py - Create the param grid
+[22-12-2021 03:10:22 AM: - INFO: 71:] - train_and_evaluate.py - {'n_estimators': [10, 20, 30, 40, 50], 'max_features': ['auto', 'sqrt'], 'max_depth': [2, 4], 'min_samples_split': [2, 5], 'min_samples_leaf': [1, 2], 'bootstrap': [True, False]}
+[22-12-2021 03:10:22 AM: - INFO: 73:] - train_and_evaluate.py - Applying random forest..
+[22-12-2021 03:10:59 AM: - INFO: 81:] - train_and_evaluate.py - Model fitting is completed..
+[22-12-2021 03:10:59 AM: - INFO: 82:] - train_and_evaluate.py - 
+ These are best parameters: 
+{'bootstrap': False, 'max_depth': 4, 'max_features': 'auto', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 50}
+[22-12-2021 03:10:59 AM: - INFO: 90:] - train_and_evaluate.py - Model is dumped successfully..
+[22-12-2021 03:10:59 AM: - INFO: 95:] - train_and_evaluate.py - 
+ Train Accuracy - : 0.926
+[22-12-2021 03:10:59 AM: - INFO: 96:] - train_and_evaluate.py - 
+[[158  52]
+ [  0 490]]
+[22-12-2021 03:10:59 AM: - INFO: 97:] - train_and_evaluate.py - 
+ Test Accuracy - : 0.937
+[22-12-2021 03:10:59 AM: - INFO: 98:] - train_and_evaluate.py - 
+[[ 72  18]
+ [  1 209]]
+[22-12-2021 03:10:59 AM: - INFO: 116:] - train_and_evaluate.py - 
+ Best Threshold values for our model :- 
+   threshold  f1_score
+0   0.713273  0.956522
+1   0.925872  0.956522
+2   0.472582  0.956522
+3   0.475904  0.956522
+4   0.573125  0.956522
+[22-12-2021 03:10:59 AM: - INFO: 121:] - train_and_evaluate.py - 
+ Train Accuracy - : 0.926
+[22-12-2021 03:10:59 AM: - INFO: 122:] - train_and_evaluate.py - 
+[[192  18]
+ [ 47 443]]
+[22-12-2021 03:10:59 AM: - INFO: 123:] - train_and_evaluate.py - 
+              precision    recall  f1-score   support
+
+           0       0.80      0.91      0.86       210
+           1       0.96      0.90      0.93       490
+
+    accuracy                           0.91       700
+   macro avg       0.88      0.91      0.89       700
+weighted avg       0.91      0.91      0.91       700
+
+[22-12-2021 03:11:00 AM: - INFO: 124:] - train_and_evaluate.py - Test Accuracy - : 0.937
+[22-12-2021 03:11:00 AM: - INFO: 125:] - train_and_evaluate.py - 
+[[ 87   3]
+ [ 30 180]]
+[22-12-2021 03:11:00 AM: - INFO: 126:] - train_and_evaluate.py - 
+              precision    recall  f1-score   support
+
+           0       0.74      0.97      0.84        90
+           1       0.98      0.86      0.92       210
+
+    accuracy                           0.89       300
+   macro avg       0.86      0.91      0.88       300
+weighted avg       0.91      0.89      0.89       300
+

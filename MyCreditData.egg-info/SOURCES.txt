@@ -9,14 +9,6 @@ requirements.txt
 runner.py
 setup.py
 template.py
-.dvc/.gitignore
-.dvc/config
-.dvc/plots/confusion.json
-.dvc/plots/confusion_normalized.json
-.dvc/plots/linear.json
-.dvc/plots/scatter.json
-.dvc/plots/simple.json
-.dvc/plots/smooth.json
 Cassandra_Python_Connectivity/__init__.py
 Cassandra_Python_Connectivity/connect_database.py
 Cassandra_Python_Connectivity/__pycache__/connect_database.cpython-37.pyc
