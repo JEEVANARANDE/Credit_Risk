@@ -1,49 +1,85 @@
-from flask import Flask, render_template
-from flask import request, url_for
-from flask_cors import CORS, cross_origin
-import flask_monitoringdashboard as dashboard
-import pandas as pd
-import json
-import argparse
 import os
-from wsgiref import simple_server
-from src.custom_function import *
+from flask import Flask, render_template, jsonify, request, url_for, redirect
+import pandas as pd
+import numpy as np
+import pickle
+import joblib
+import json
+
 app = Flask(__name__)
-dashboard.bind(app)
-CORS(app)
-# CORS(app)
-def minmax_columns(config_path):
-    config = read_params(config_path)
-    data_dir = config["flask"]["data_dirr"]
-    data = config["flask"]["data"]
-    data_fp = os.path.join(data_dir, data)
-    print(data_fp)
-    output_fn = os.path.join('webapp','static', 'data', 'minmax.json')
-
-    if not os.path.isfile(output_fn):
-        print('JSON not present')
-        print('Generating Min Max JSON')
-        data = pd.read_csv(data_fp)
-        minmaxcols = ['duration', 'amount', 'age']
-        with open(output_fn, 'w') as json_file:
-            data_dict = dict()
-            for col in minmaxcols:
-                _min = data[col].min()
-                _max = data[col].max()
-                data_dict[col] = { 'min': int(_min), 'max': int(_max) }
-            json.dump(data_dict, json_file)
 
 
-@app.route("/", methods=['GET'])
-def home():
-    return render_template('index.html', message="Hello Flask!")
+## Global Variables
+# Directories
+pre_dir = os.path.dirname(os.getcwd())
+data_dir = os.path.join(pre_dir, 'data_given')
+pickle_dir = os.path.join(pre_dir, 'saved_models')
+
+# Input Files
+data_fp = os.path.join(data_dir, 'SouthGermanCredit_cassandra.csv')
+minmax_fn = os.path.join('static', 'data', 'minmax.json')
+
+threshold = 0.645379
+credit_risk_dict = { 1: 'Good', 0: 'Bad' }
+
+
+if not os.path.isfile(minmax_fn):
+    print('JSON not present')
+    print('Generating Min Max JSON')
+    data = pd.read_csv(data_fp)
+    minmaxcols = ['duration', 'amount', 'age']
+    with open(minmax_fn, 'w') as json_file:
+        data_dict = dict()
+        for col in minmaxcols:
+            _min = data[col].min()
+            _max = data[col].max()
+            data_dict[col] = { 'min': int(_min), 'max': int(_max) }
+        json.dump(data_dict, json_file)
+
+with open(os.path.join(pickle_dir, 'MinMaxScaler.pkl'), 'rb') as pkl_file:
+    MinMaxScaler = pickle.load(pkl_file)
+
+with open(os.path.join(pickle_dir, 'rf_Grid.joblib'), 'rb') as joblib_file:
+    model = joblib.load(joblib_file)
+
+with open(os.path.join(pickle_dir, 'ohenc.pkl'), 'rb') as pkl_file:
+    ohenc = pickle.load(pkl_file)
+
+def preprocess_features(_data):
+    # One Hot Encoding
+    nominaldata1=['status','credit_history','purpose','savings','personal_status_sex',
+    'other_debtors','other_installment_plans','housing','foreign_worker']
+    encoded_data = ohenc.transform(_data[nominaldata1])
+    encoded_df = pd.DataFrame(encoded_data, columns = [f'OHE{i}' for i in range(1, encoded_data.shape[1] + 1)])
+    non_nominal_df = _data.drop(nominaldata1, axis=1).reset_index(drop=True)
+    _data = non_nominal_df.merge(encoded_df, how='left', left_index=True, right_index=True)
+    _data=MinMaxScaler.transform(_data)
+
+    return _data
+
+def predict_diff_thresh(pred_probs, thresh):
+    return np.where(pred_probs > thresh, 1, 0)
+
+
+@app.route("/", methods=['GET', 'POST'])
+def index():
+    with open(minmax_fn, 'r') as json_file:
+        minmax_dict = json.load(json_file)
+    context = minmax_dict
+    if request.method == 'POST':
+        data = request.form.to_dict()
+        # del data['form_submit']
+        data = { k: int(v) for k, v in data.items() }
+        
+        data_in = preprocess_features(pd.DataFrame([data]))
+
+        probability = model.predict_proba(data_in)[:, 1]
+        prediction = predict_diff_thresh(probability, threshold)
+        credit_risk_op = credit_risk_dict[prediction.tolist()[0]]
+        context['credit_risk'] = credit_risk_op
+        print({"credit_risk": credit_risk_op})
+    return render_template("index.html", **context)
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8000, debug=True)
-    args = argparse.ArgumentParser()
-    args.add_argument("--config",default="params.yaml")
-    parsed_args = args.parse_args()
-    minmax_columns(config_path= parsed_args.config)
-
-
+    app.run(host='127.0.0.1', port=8000, debug=True)
